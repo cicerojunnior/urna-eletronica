@@ -108,7 +108,10 @@ body {
     line-height: 30px;
 }
 .d-1-right {
-    width: 90px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 .d-1-image {
     border: 1px solid #000;
