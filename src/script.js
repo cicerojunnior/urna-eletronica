@@ -12,6 +12,7 @@ let numero = ''
 let votoBranco = false
 let votos = []
 let votoConfirmado = false
+let cliques = 0
 
 function comecarEtapa() {
     let etapa = etapas[etapaAtual]
@@ -98,33 +99,33 @@ function corrige() {
     }
 }
 function confirma() {
-    let etapa = etapas[etapaAtual]
+    if(cliques <=  1) {
+        let etapa = etapas[etapaAtual]
     
-    if(votoBranco === true) {
-        votoConfirmado = true
-        votos.push({
-            etapa: etapas[etapaAtual].titulo,
-            voto: 'branco'
-        })
-    } else if(numero.length === etapa.numeros) {
-        votoConfirmado = true
-        votos.push({
-            etapa: etapas[etapaAtual].titulo,
-            voto: numero
-        })
-    }
-
-    if(votoConfirmado) {
-        etapaAtual++
-        if(etapas[etapaAtual] !== undefined) {
-            comecarEtapa()
-            votoConfirmado = false
-        } else {
-            document.querySelector('.tela').innerHTML = '<div class="aviso--gigante"> FIM </div>'
-            
-            console.log(votos)
+        if(votoBranco === true) {
+            votoConfirmado = true
+            votos.push({
+                etapa: etapas[etapaAtual].titulo,
+                voto: 'branco'
+            })
+        } else if(numero.length === etapa.numeros) {
+            votoConfirmado = true
+            votos.push({
+                etapa: etapas[etapaAtual].titulo,
+                voto: numero
+            })
+        }  
+        if(votoConfirmado) {
+            etapaAtual++
+            if(etapas[etapaAtual] !== undefined) {
+                comecarEtapa()
+                cliques++
+                votoConfirmado = false
+            } else {
+                document.querySelector('.tela').innerHTML = '<div class="aviso--gigante"> FIM </div>'
+                console.log(votos)
+            }
         }
-
     }
 }
 comecarEtapa()
