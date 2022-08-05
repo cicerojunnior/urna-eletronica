@@ -99,7 +99,8 @@ function corrige() {
     }
 }
 function confirma() {
-    if(cliques <=  1) {
+    if(cliques <= 1) {
+        cliques++
         let etapa = etapas[etapaAtual]
     
         if(votoBranco === true) {
@@ -119,7 +120,6 @@ function confirma() {
             etapaAtual++
             if(etapas[etapaAtual] !== undefined) {
                 comecarEtapa()
-                cliques++
                 votoConfirmado = false
             } else {
                 document.querySelector('.tela').innerHTML = '<div class="aviso--gigante"> FIM </div>'
