@@ -12,7 +12,6 @@ let numero = ''
 let votoBranco = false
 let votos = []
 let votoConfirmado = false
-let cliques = 0
 
 function comecarEtapa() {
     let etapa = etapas[etapaAtual]
@@ -20,6 +19,7 @@ function comecarEtapa() {
     let numeroHMTL = ''
     numero = ''
     votoBranco = false
+    votoConfirmado = false
 
     for(let i=0;i<etapa.numeros;i++) {
         if(i === 0) {
@@ -92,15 +92,12 @@ function branco() {
     descricao.innerHTML = '<div class="aviso--grande pisca"> VOTO EM BRANCO </div>'
 }
 function corrige() {
-    if(votoConfirmado) {
-
-    } else {
+    if(votoConfirmado === false) {
         comecarEtapa()
     }
 }
 function confirma() {
-    if(cliques <= 1) {
-        cliques++
+    if(votoConfirmado === false) {
         let etapa = etapas[etapaAtual]
     
         if(votoBranco === true) {
@@ -120,7 +117,6 @@ function confirma() {
             etapaAtual++
             if(etapas[etapaAtual] !== undefined) {
                 comecarEtapa()
-                votoConfirmado = false
             } else {
                 document.querySelector('.tela').innerHTML = '<div class="aviso--gigante"> FIM </div>'
                 console.log(votos)
